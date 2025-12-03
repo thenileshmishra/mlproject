@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Predictor - Home</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .hero-container {
+        text-align: center;
+        color: white;
+        max-width: 800px;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        font-size: 20px;
+        margin-bottom: 40px;
+        opacity: 0.9;
+      }
+
+      .features {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 25px;
+        width: 220px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .feature-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .feature-desc {
+        font-size: 14px;
+        opacity: 0.85;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: white;
+        color: #667eea;
+        padding: 18px 50px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .cta-button:active {
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 36px;
+        }
+
+        .subtitle {
+          font-size: 16px;
+        }
+
+        .features {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero-container">
+      <h1>Student Performance Predictor</h1>
+      <p class="subtitle">
+        Predict student math scores using machine learning based on demographics and test scores
+      </p>
+
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <div class="feature-title">Accurate Predictions</div>
+          <div class="feature-desc">
+            ML-powered predictions trained on student performance data
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Instant Results</div>
+          <div class="feature-desc">
+            Get predictions in seconds with our optimized models
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <div class="feature-title">Data-Driven</div>
+          <div class="feature-desc">
+            Based on comprehensive student performance analysis
+          </div>
+        </div>
+      </div>
+
+      <a href="{{ url_for('predict_datapoint') }}" class="cta-button">
+        Start Predicting
+      </a>
+    </div>
+  </body>
+</html>
