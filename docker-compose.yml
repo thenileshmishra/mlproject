@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mlops-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mlops-student-performance
+    ports:
+      - "5001:5001"
+    volumes:
+      # Mount source code for development (comment out in production)
+      - .:/app
+      # Persist artifacts and models
+      - mlops-artifacts:/app/artifacts
+      - mlops-logs:/app/logs
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    networks:
+      - mlops-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:5001/', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  mlops-artifacts:
+    driver: local
+  mlops-logs:
+    driver: local
+
+networks:
+  mlops-network:
+    driver: bridge

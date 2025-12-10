@@ -8,4 +8,5 @@ xgboost
 dill
 pyyaml
 flask
+requests
 # -e .
