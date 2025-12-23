@@ -1,5 +1,5 @@
-# Use Python 3.8 slim image as base
-FROM python:3.8-slim-buster
+# Use Python 3.9 slim image as base (more secure and up-to-date)
+FROM python:3.9-slim-bullseye
 
 # Set working directory
 WORKDIR /app
@@ -30,6 +30,9 @@ COPY . .
 # Install the package in editable mode
 RUN pip install -e .
 
+# Make startup script executable
+RUN chmod +x start.sh
+
 # Expose the port Flask runs on
 EXPOSE 5001
 
@@ -44,5 +47,5 @@ USER mluser
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD python -c "import requests; requests.get('http://localhost:5001/', timeout=5)" || exit 1
 
-# Run the application
-CMD ["python", "app.py"]
+# Run the application using startup script
+CMD ["./start.sh"]

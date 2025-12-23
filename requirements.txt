@@ -9,4 +9,5 @@ dill
 pyyaml
 flask
 requests
+gunicorn
 # -e .
